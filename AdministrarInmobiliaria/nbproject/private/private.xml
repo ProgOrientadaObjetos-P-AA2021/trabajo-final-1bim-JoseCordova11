@@ -3,13 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/reroes/Documentos/clasesUTPLabril-agosto2020/POO-presencial/primer-bimestre/trabajo-final-primer-bimestre/trabajo-final-1bim/AdministrarInmobiliaria/src/paqueteuno/Ejecutor.java</file>
-            <file>file:/home/reroes/Documentos/clasesUTPLabril-agosto2020/POO-presencial/primer-bimestre/trabajo-final-primer-bimestre/trabajo-final-1bim/AdministrarInmobiliaria/src/paquetetres/Ubicacion.java</file>
-            <file>file:/home/reroes/Documentos/clasesUTPLabril-agosto2020/POO-presencial/primer-bimestre/trabajo-final-primer-bimestre/trabajo-final-1bim/AdministrarInmobiliaria/src/paquetedos/Propietario.java</file>
-            <file>file:/home/reroes/Documentos/clasesUTPLabril-agosto2020/POO-presencial/primer-bimestre/trabajo-final-primer-bimestre/trabajo-final-1bim/AdministrarInmobiliaria/src/paquetecuatro/Ciudad.java</file>
-            <file>file:/home/reroes/Documentos/clasesUTPLabril-agosto2020/POO-presencial/primer-bimestre/trabajo-final-primer-bimestre/trabajo-final-1bim/AdministrarInmobiliaria/src/paquetecinco/Constructora.java</file>
-            <file>file:/home/reroes/Documentos/clasesUTPLabril-agosto2020/POO-presencial/primer-bimestre/trabajo-final-primer-bimestre/trabajo-final-1bim/AdministrarInmobiliaria/src/paqueteseis/Departamento.java</file>
-            <file>file:/home/reroes/Documentos/clasesUTPLabril-agosto2020/POO-presencial/primer-bimestre/trabajo-final-primer-bimestre/trabajo-final-1bim/AdministrarInmobiliaria/src/paqueteseis/Casa.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetecuatro/ArchivoLecturaCiudad.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetecuatro/Ciudad.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetecinco/ArchivoLecturaConstructora.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetecinco/ArchivoEscrituraConstructora.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paqueteseis/ArchivoEscrituraDepar.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetecinco/Constructora.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paqueteseis/Casa.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paqueteseis/ArchivoLecturaDepar.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetedos/ArchivoEscrituraPropietario.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetetres/ArchivoEscrituraUbicacion.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetetres/Ubicacion.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paqueteuno/Ejecutor.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetedos/Propietario.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetedos/ArchivoLecturaPropietario.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paqueteseis/ArchivoEscrituraCasa.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetetres/ArchivoLecturaUbicacion.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paqueteseis/ArchivoLecturaCasa.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paquetecuatro/ArchivoEscrituraCiudad.java</file>
+            <file>file:/D:/ASUS/Nueva%20carpeta%20(2)/NetBeansProjects/AdministrarInmobiliaria/src/paqueteseis/Departamento.java</file>
         </group>
     </open-files>
 </project-private>

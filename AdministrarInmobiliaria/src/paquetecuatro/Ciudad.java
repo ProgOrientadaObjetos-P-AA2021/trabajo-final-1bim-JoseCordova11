@@ -1,14 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paquetecuatro;
+import java.io.Serializable;
 
 /**
  *
- * @author reroes
+ * @author Jose Cordova
  */
-public class Ciudad {
+public class Ciudad implements Serializable {
+    private String nombreCiudad;
+    private String nombreProvin;
+    
+    public Ciudad(){
+        
+    }    
+    public void setNombreCiudad(String nc){
+        nombreCiudad = nc;
+    }
+    public void setNombreProvin(String np){
+        nombreProvin = np;
+    }
+    
+    public String getNombreCiudad(){
+        return nombreCiudad;
+    }
+    public String getNombreProvin(){
+        return nombreProvin;
+    }
+    @Override
+    public String toString() {
+        return nombreCiudad + "\n" + nombreProvin + "\n";
+    }
     
 }
