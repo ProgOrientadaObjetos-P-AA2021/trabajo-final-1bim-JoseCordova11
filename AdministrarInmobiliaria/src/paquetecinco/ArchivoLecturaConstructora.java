@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 public class ArchivoLecturaConstructora {
     private ObjectInputStream entrada;
-    private ArrayList<Constructora> ciud;
+    private ArrayList<Constructora> cons;
     private String nombreArchivo;
     private Constructora buscarObjeto;
     private boolean booleanBuscado;
@@ -40,13 +40,13 @@ public class ArchivoLecturaConstructora {
     }
     
     public void setListaCons() {
-        ciud = new ArrayList<>();
+        cons = new ArrayList<>();
         File f = new File(getNombreArchivo());
         if (f.exists()) {
             while (true) {
                 try {
                     Constructora registro = (Constructora) entrada.readObject();
-                    ciud.add(registro);
+                    cons.add(registro);
                 } catch (EOFException endOfFileException) {
                     return;
 
@@ -82,7 +82,7 @@ public class ArchivoLecturaConstructora {
     }
 
     public ArrayList<Constructora> getListaCons() {
-        return ciud;
+        return cons;
     }
 
     public String getNombreArchivo() {
