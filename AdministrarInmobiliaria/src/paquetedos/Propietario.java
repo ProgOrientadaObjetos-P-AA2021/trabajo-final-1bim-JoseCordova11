@@ -9,8 +9,10 @@ public class Propietario implements Serializable{
     String apellidoPro;
     String idPro;
     
-    public Propietario(){
-        
+    public Propietario(String np, String ap, String id){
+        nombrePro = np;
+        apellidoPro = ap;
+        idPro = id;
     }
     
     public void setNombrePro(String np){
@@ -34,6 +36,13 @@ public class Propietario implements Serializable{
     
     @Override
     public String toString() {
-        return nombrePro + "\n" + apellidoPro + "\n" + idPro;
+        String cadena = String.format("Nombre propietario: %s\n"
+                + "Apellido propietario: %s\n"
+                + "Identificacion propietario: %s\n",
+                getNombrePro(),
+                getApellidoPro(),
+                getIdPro());
+        return cadena;
     }
+
 }

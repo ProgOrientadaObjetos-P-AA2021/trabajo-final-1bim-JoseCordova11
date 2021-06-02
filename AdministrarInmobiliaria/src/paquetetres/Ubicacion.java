@@ -8,16 +8,23 @@ import java.io.Serializable;
 public class Ubicacion implements Serializable{
     
     private String nombreBarrio;
-    private int numeroCasa;
+    private String numeroCasa;
     private String referencia;
     
-    public Ubicacion(){
-        
-    } 
+    public Ubicacion(String nomB,String ref){
+        nombreBarrio = nomB;
+        referencia = ref;
+    }
+    public Ubicacion(String nomB,String nuCasa,String ref){
+        nombreBarrio = nomB;
+        numeroCasa = nuCasa;
+        referencia = ref;
+    }
+    
     public void setNombreBarrio(String nb){
         nombreBarrio = nb;
     }
-    public void setNumeroCasa(int nc){
+    public void setNumeroCasa(String nc){
         numeroCasa = nc;
     }
     public void setReferencia(String re){
@@ -27,7 +34,7 @@ public class Ubicacion implements Serializable{
     public String getNombreBarrio(){
         return nombreBarrio;
     }
-    public int getNumeroCasa(){
+    public String getNumeroCasa(){
         return numeroCasa;
     }
     public String getReferencia(){
@@ -36,6 +43,12 @@ public class Ubicacion implements Serializable{
     
     @Override
     public String toString() {
-        return nombreBarrio + "\n" + numeroCasa + "\n" + referencia+ "\n";
+        String cadena = String.format("Nombre del barrio: %s\n"
+                + "Numero de casa: %s\n"
+                + "Referencia: %s\n",
+                getNombreBarrio(),
+                getNumeroCasa(),
+                getReferencia());
+        return cadena;
     }
 }

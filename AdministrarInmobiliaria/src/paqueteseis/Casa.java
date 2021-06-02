@@ -23,11 +23,18 @@ public class Casa implements Serializable{
         
     }
 
-    public Casa(Propietario pro, double precioMC, int numeroMC, Ubicacion ubi, Ciudad ci, int nCuartos, Constructora con) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Casa(Propietario pro, double precioMC, double numeroMC, Ubicacion ubi, Ciudad ci, int nCuartos, Constructora cons) {
+        propietario = pro;
+        precioMetroCuadrado = precioMC;
+        numeroMetrosCuadrado = numeroMC;
+        ubicacion = ubi;
+        ciudad = ci;
+        numeroCuartos = nCuartos;
+        constructora = cons;
     }
+
     
-    public void setPropietario(Propietario pro){
+    public void setPropietarioCasa(Propietario pro){
         propietario = pro;
     }
     public void setPrecioMC(double pmc){
@@ -52,7 +59,7 @@ public class Casa implements Serializable{
         constructora = cons;
     }
     
-    public Propietario getPropietario(){
+    public Propietario getPropietarioCasa(){
         return propietario;
     }
     public double getPrecioMC(){

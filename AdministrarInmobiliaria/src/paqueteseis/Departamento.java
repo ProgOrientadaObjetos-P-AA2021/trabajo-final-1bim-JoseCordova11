@@ -11,6 +11,7 @@ import paquetecinco.Constructora;
  * @author Jose Cordova
  */
 public class Departamento implements Serializable {
+
     private Propietario propietario;
     private double precioMetroCuadrado;
     private double numeroMetrosCuadrado;
@@ -22,80 +23,105 @@ public class Departamento implements Serializable {
     private String nombreEdificio;
     private String ubiDeparEnEdificio;
     private Constructora constructora;
+
     
-    public Departamento(){
-        
+    public Departamento(Propietario pro, double precioMC, double numeroMC, double vm, Ubicacion ubi, Ciudad ciu, String nomEdi, String ubiDepEdi, Constructora con) {
+        propietario = pro;
+        precioMetroCuadrado = precioMC;
+        numeroMetrosCuadrado = numeroMC;
+        valorMensual = vm;
+        ubicacion = ubi;
+        ciudad = ciu;
+        nombreEdificio = nomEdi;
+        ubiDeparEnEdificio = ubiDepEdi;
+        constructora = con;
     }
 
-    public Departamento(Propietario pro, double precioMC, int numeroMC, double valorMensual, Ubicacion ubi, Ciudad ciu, String nomEdi, String ubiDepEdi, Constructora con) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public void setPropietario(Propietario pro){
+    public void setPropietario(Propietario pro) {
         propietario = pro;
     }
-    public void setPrecioMC(double pmc){
+
+    public void setPrecioMC(double pmc) {
         precioMetroCuadrado = pmc;
     }
-    public void setNumeroMC(double nmc){
+
+    public void setNumeroMC(double nmc) {
         numeroMetrosCuadrado = nmc;
     }
-    public void setValorMensual(double vm){
+
+    public void setValorMensual(double vm) {
         valorMensual = vm;
     }
-    public void setCostoFinal(){
+
+    public void setCostoFinal() {
         costoFinal = (numeroMetrosCuadrado * precioMetroCuadrado) + (valorMensual * 12);
     }
-    public void setPrecio(double pre){
+
+    public void setPrecio(double pre) {
         precio = pre;
     }
-    public void setUbicacion(Ubicacion ubi){
+
+    public void setUbicacion(Ubicacion ubi) {
         ubicacion = ubi;
     }
-    public void setCiudad(Ciudad c){
+
+    public void setCiudad(Ciudad c) {
         ciudad = c;
     }
-    public void setNombreEdificio(String ne){
+
+    public void setNombreEdificio(String ne) {
         nombreEdificio = ne;
     }
-    public void setUbiDepar(String ude){
+
+    public void setUbiDepar(String ude) {
         ubiDeparEnEdificio = ude;
     }
-    public void setConstructora(Constructora cons){
+
+    public void setConstructora(Constructora cons) {
         constructora = cons;
     }
-    
-    public Propietario getPropietario(){
+
+    public Propietario getPropietario() {
         return propietario;
     }
-    public double getPrecioMC(){
+
+    public double getPrecioMC() {
         return precioMetroCuadrado;
     }
-    public double getNumeroMC(){
+
+    public double getNumeroMC() {
         return numeroMetrosCuadrado;
     }
-    public double getValorMensual(){
+
+    public double getValorMensual() {
         return valorMensual;
     }
-    public double getCostoFinal(){
+
+    public double getCostoFinal() {
         return costoFinal;
     }
-    public double getPrecio(){
+
+    public double getPrecio() {
         return precio;
     }
-    public Ubicacion getUbicacion(){
+
+    public Ubicacion getUbicacion() {
         return ubicacion;
     }
-    public Ciudad getCiudad (){
+
+    public Ciudad getCiudad() {
         return ciudad;
     }
-    public String getNombreEdifico(){
+
+    public String getNombreEdifico() {
         return nombreEdificio;
     }
-    public String getUbiDepar(){
+
+    public String getUbiDepar() {
         return ubiDeparEnEdificio;
     }
-    public Constructora getConstructora(){
+
+    public Constructora getConstructora() {
         return constructora;
     }
 }

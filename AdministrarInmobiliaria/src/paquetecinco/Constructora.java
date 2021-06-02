@@ -6,21 +6,22 @@ import java.io.Serializable;
  * @author Jose Cordova
  */
 public class Constructora implements Serializable {
-    private String nombre;
+    private String nombreCon;
     private String idEmpresa;
     
-    public Constructora (){
-          
+    public Constructora (String n,String id){
+        nombreCon = n;
+        idEmpresa = id;
     }
-    public void setNombre(String n){
-        nombre = n;
+    public void setNombreCons(String n){
+        nombreCon = n;
     }
     public void setIdEmpresa(String id){
         idEmpresa = id;
     }
     
-    public String getNombre(){
-        return nombre;
+    public String getNombreCons(){
+        return nombreCon;
     }
     
     public String getIdEmpresa(){
@@ -28,10 +29,9 @@ public class Constructora implements Serializable {
     }
     
     public String toString() {
-        String cadena = String.format("Información de la Constructora: \n"
-                + "Nombre de la constructora: %s\n"
+        String cadena = String.format("Nombre de constructora: %s\n"
                 + "Id de la empresa: %s\n",
-                getNombre(),
+                getNombreCons(),
                 getIdEmpresa());
         return cadena;
     }

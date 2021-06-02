@@ -1,8 +1,9 @@
 package paqueteseis;
 
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Formatter;
 
 /**
  *
@@ -10,83 +11,74 @@ import java.util.Formatter;
  */
 public class ArchivoEscrituraDepar {
     private String nombreArchivo;
-    private String rutaArchivo;
+    private ObjectOutputStream salida;
     private Departamento registro;
-    private Formatter salidaArchivo;
-    
-    public ArchivoEscrituraDepar(String n) {
-        nombreArchivo = n;
-        rutaArchivo = String.format("data/%s",
-                getNombreArchivo());
-        setInformacionAnterior();
+    private ArrayList<Departamento> listaDepar;
 
-    }
-
-    public void setInformacionAnterior() {
-        ArchivoLecturaDepar lectura = new ArchivoLecturaDepar(nombreArchivo);
-        lectura.setLista();
-        ArrayList<Departamento> lista = lectura.getLista();
+    public ArchivoEscrituraDepar(String nA) {
+        nombreArchivo = nA;
+        establecerListaDepar();
 
         try {
-            salidaArchivo = new Formatter(rutaArchivo);
-            if (lista != null) {
+            salida = new ObjectOutputStream(
+                    new FileOutputStream(nombreArchivo));
 
-                if (lista.size() > 0) {
-                    for (int i = 0; i < lista.size(); i++) {
-                        Departamento d = lista.get(i);
-                        setRegistro(d);
-                        setSalida();
-                    }
+            if (obtenerListaDepar().size() > 0) {
+                for (int i = 0; i < obtenerListaDepar().size(); i++) {
+                    establecerRegistro(obtenerListaDepar().get(i));
+                    establecerSalida();
                 }
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("Error al leer del archivo: " + e);
-
+        } // fin de try
+        catch (IOException ioException) {
+            System.err.println("Error al abrir el archivo.");
         } // fin de catch
     }
 
-    public void setNombreArchivo(String n) {
+    public void establecerNombreArchivo(String n) {
         nombreArchivo = n;
     }
-    public void setRutaArchivo() {
-        rutaArchivo = String.format("data/%s.txt", getNombreArchivo());
-    }
-    public void setRegistro(Departamento n) {
-        registro = n;
-    }
-    public String getNombreArchivo() {
-        return nombreArchivo;
-    }
-    public String getRutaArchivo() {
-        return rutaArchivo;
-    }
-    public Departamento getRegistro() {
-        return registro;
-    }
-    
-    public void setSalida() {
-        try {
-            Departamento d = getRegistro();
-            String cadenaRegistro = String.format("%.2f;%.2f;%.2f;%.2f;%.2f;%s;%s",
-                    d.getPrecioMC(),
-                    d.getNumeroMC(),
-                    d.getValorMensual(),
-                    d.getCostoFinal(),
-                    d.getPrecio(),
-                    d.getNombreEdifico(),
-                    d.getUbiDepar());
-            salidaArchivo.format("%s\n", cadenaRegistro);
 
-        } catch (Exception e) {
-            System.err.println("Error al crear el archivo.");
-            System.err.println(e);
+    public void establecerRegistro(Departamento depar) {
+        registro = depar;
+    }
+
+    public void establecerSalida() {
+        try {
+            salida.writeObject(registro);
+
+        } catch (IOException ex) {
+            System.err.println("Error al escribir en el archivo.");
         }
     }
 
+    public void establecerListaDepar() {
+        ArchivoEscrituraDepar dep = new ArchivoEscrituraDepar(obtenerNombreArchivo());
+        dep.establecerListaDepar();
+        listaDepar = dep.obtenerListaDepar();
+    }
+
+    public String obtenerNombreArchivo() {
+        return nombreArchivo;
+    }
+
+    public ArrayList<Departamento> obtenerListaDepar() {
+        return listaDepar;
+    }
+
+    public ObjectOutputStream obtenerSalida() {
+        return salida;
+    }
+
     public void cerrarArchivo() {
-        if (salidaArchivo != null) {
-            salidaArchivo.close();
-        } 
+        try {
+            if (salida != null) {
+                salida.close();
+            }
+        } catch (IOException ioException) {
+            System.err.println("Error al cerrar el archivo.");
+
+        }
     }
     
 }

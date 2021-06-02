@@ -1,90 +1,120 @@
 package paquetedos;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
+import java.io.EOFException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  *
  * @author Jose Cordova
  */
 public class ArchivoLecturaPropietario {
-    private Scanner entrada;
+    
+    private ObjectInputStream entrada;
+    private ArrayList<Propietario> propi;
     private String nombreArchivo;
-    private String rutaArchivo;
-    private ArrayList<Propietario> lista;
-
-    public ArchivoLecturaPropietario(String n) {
-        nombreArchivo = n;
-        rutaArchivo = String.format("data/%s",
-                getNombreArchivo());
-
-        File f = new File(rutaArchivo);
+    private Propietario buscarObjeto;
+    private boolean booleanBuscado;
+    
+    public ArchivoLecturaPropietario(String nA) {
+        nombreArchivo = nA;
+        File f = new File(getNombreArchivo());
         if (f.exists()) {
             try {
-                entrada = new Scanner(new File(rutaArchivo));              
-            } 
-            catch (FileNotFoundException e) {
-                System.err.println("Error al leer del archivo: " + e);
-            } 
+                entrada = new ObjectInputStream(
+                        new FileInputStream(nA));
+            } catch (IOException ioException) {
+                System.err.println("Error al abrir el archivo." + ioException);
+            }
         }
     }
-
+    
     public void setNombreArchivo(String n) {
         nombreArchivo = n;
     }
-    public void setRutaArchivo() {
-        rutaArchivo = String.format("data/%s.txt",
-                getNombreArchivo());;
-    }
-    public String getNombreArchivo() {
-        return nombreArchivo;
-    }
-    public String getRutaArchivo() {
-        return rutaArchivo;
-    }
-
-    public void setLista() {
-        lista = new ArrayList<>();
-        File f = new File(rutaArchivo);
-
+    
+    public void setListaPro() {
+        propi = new ArrayList<>();
+        File f = new File(getNombreArchivo());
         if (f.exists()) {
+            while (true) {
+                try {
+                    Propietario registro = (Propietario) entrada.readObject();
+                    propi.add(registro);
+                } catch (EOFException endOfFileException) {
+                    return;
 
-            while (entrada.hasNext()) {
-                String linea = entrada.nextLine();
-
-                ArrayList<String> linea_partes = new ArrayList<>(
-                        Arrays.asList(linea.split(";")));
-                Propietario pro = new Propietario();
- 
-                lista.add(pro);
-
-            } 
+                } catch (IOException ex) {
+                    System.err.println("Error al leer el archivo: " + ex);
+                } catch (ClassNotFoundException ex) {
+                    System.err.println("No se pudo crear el objeto: " + ex);
+                } catch (Exception ex) {
+                    System.err.println("No hay datos en el archivo: " + ex);
+                    break;
+                }
+            }
+        }
+    }
+    
+      public void setBuscarObjeto(String n) {
+        setListaPro();
+        ArrayList<Propietario> listaPropietario = getListaPro();
+        for (int i = 0; i < listaPropietario.size(); i++) {
+            Propietario p = listaPropietario.get(i);
+            if (p.getIdPro().equals(n)) {
+                buscarObjeto = p;
+            }
         }
     }
 
-    public ArrayList<Propietario> getLista() {
-        return lista;
+    public void setBooleanBuscado() {
+        boolean bandera = true;
+        if (buscarObjeto != null) {
+            bandera = false;
+        }
+        booleanBuscado = bandera;
     }
 
-    public void cerrarArchivo() {
+    public ArrayList<Propietario> getListaPro() {
+        return propi;
+    }
+
+    public String getNombreArchivo() {
+        return nombreArchivo;
+    }
+
+    public Propietario getBuscarObjeto() {
+        return buscarObjeto;
+    }
+
+    public boolean getBooleanBuscado() {
+        return booleanBuscado;
+    }
+
+    
+ 
+    public void cerrarArchivo() throws IOException {
         if (entrada != null) {
             entrada.close();
         } 
-
     }
 
     @Override
     public String toString() {
-        String cadena = "Propietario.txt\n";
-        for (int i = 0; i < getLista().size(); i++) {
-            cadena = String.format("%sNombre: ;%sApellido: ;%sID: \n", cadena, i + 1,
-                    getLista().get(i).getNombrePro(),
-                    getLista().get(i).getApellidoPro(),
-                    getLista().get(i).getIdPro());
+        String cadena = "Lista Propietarios\n";
+        for (int i = 0; i < getListaPro().size(); i++) {
+            Propietario p = getListaPro().get(i);
+            cadena = String.format("%sPropietario %d:\n"
+                    + "Nombre: %s --- "
+                    + "Apellido: %s --- "
+                    + "Identificación: %s\n",
+                    cadena, i + 1,
+                    p.getNombrePro(),
+                    p.getApellidoPro(),
+                    p.getIdPro());
         }
         return cadena;
     }

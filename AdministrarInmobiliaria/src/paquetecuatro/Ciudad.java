@@ -9,9 +9,11 @@ public class Ciudad implements Serializable {
     private String nombreCiudad;
     private String nombreProvin;
     
-    public Ciudad(){
-        
-    }    
+    public Ciudad (String nomCiu,String nomProvi){
+        nombreCiudad = nomCiu;
+        nombreProvin = nomProvi;
+    }
+    
     public void setNombreCiudad(String nc){
         nombreCiudad = nc;
     }
@@ -27,7 +29,11 @@ public class Ciudad implements Serializable {
     }
     @Override
     public String toString() {
-        return nombreCiudad + "\n" + nombreProvin + "\n";
+        String cadena = String.format("Nombre de la ciudad: %s\n"
+                + "Nombre de la provincia: %s\n",
+                getNombreCiudad(),
+                getNombreProvin());
+        return cadena;
     }
-    
+  
 }

@@ -1,94 +1,121 @@
 package paquetetres;
 
+import java.io.EOFException;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  *
  * @author Jose Cordova
  */
 public class ArchivoLecturaUbicacion {
-    private Scanner entrada;
+    private ObjectInputStream entrada;
+    private ArrayList<Ubicacion> ubica;
     private String nombreArchivo;
-    private String rutaArchivo;
-    private ArrayList<Ubicacion> lista;
+    private Ubicacion buscarObjeto;
+    private boolean booleanBuscado;
 
     public ArchivoLecturaUbicacion(String n) {
         nombreArchivo = n;
-        rutaArchivo = String.format("data/%s",
-                getNombreArchivo());
-
-        File f = new File(rutaArchivo);
+        File f = new File(getNombreArchivo());
         if (f.exists()) {
             try {
-                entrada = new Scanner(new File(rutaArchivo));              
-            } 
-            catch (FileNotFoundException e) {
-                System.err.println("Error al leer del archivo: " + e);
-            } 
+                entrada = new ObjectInputStream(
+                        new FileInputStream(n));
+            } catch (IOException ioException) {
+                System.err.println("Error al abrir el archivo." + ioException);
+            }
         }
     }
-
+    
     public void setNombreArchivo(String n) {
         nombreArchivo = n;
     }
     
-    public void setRutaArchivo() {
-        rutaArchivo = String.format("data/%s.txt",
-                getNombreArchivo());;
-    }
-    public String getNombreArchivo() {
-        return nombreArchivo;
-    }
-    public String getRutaArchivo() {
-        return rutaArchivo;
-    }
-
-    public void setLista() {
-        lista = new ArrayList<>();
-        File f = new File(rutaArchivo);
-
+    public void setListaUbi() {
+        ubica = new ArrayList<>();
+        File f = new File(getNombreArchivo());
         if (f.exists()) {
+            while (true) {
+                try {
+                    Ubicacion registro = (Ubicacion) entrada.readObject();
+                    ubica.add(registro);
+                } catch (EOFException endOfFileException) {
+                    return;
 
-            while (entrada.hasNext()) {
-                String linea = entrada.nextLine();
-
-                ArrayList<String> linea_partes = new ArrayList<>(
-                        Arrays.asList(linea.split(";")));
-                Ubicacion u = new Ubicacion();
- 
-                lista.add(u);
-
-            } 
+                } catch (IOException ex) {
+                    System.err.println("Error al leer el archivo: " + ex);
+                } catch (ClassNotFoundException ex) {
+                    System.err.println("No se pudo crear el objeto: " + ex);
+                } catch (Exception ex) {
+                    System.err.println("No hay datos en el archivo: " + ex);
+                    break;
+                }
+            }
+        }
+    }
+    
+      public void setBuscarObjeto(String n) {
+        setListaUbi();
+        ArrayList<Ubicacion> listaUbi = getListaUbi();
+        for (int i = 0; i < listaUbi.size(); i++) {
+            Ubicacion u = listaUbi.get(i);
+            if (u.getNumeroCasa().equals(n)) {
+                buscarObjeto = u;
+            }
         }
     }
 
-    public ArrayList<Ubicacion> getLista() {
-        return lista;
+    public void setBooleanBuscado() {
+        boolean bandera = true;
+        if (buscarObjeto != null) {
+            bandera = false;
+        }
+        booleanBuscado = bandera;
     }
 
-    public void cerrarArchivo() {
+    public ArrayList<Ubicacion> getListaUbi() {
+        return ubica;
+    }
+
+    public String getNombreArchivo() {
+        return nombreArchivo;
+    }
+
+    public Ubicacion getBuscarObjeto() {
+        return buscarObjeto;
+    }
+
+    public boolean getBooleanBuscado() {
+        return booleanBuscado;
+    }
+
+    
+ 
+    public void cerrarArchivo() throws IOException {
         if (entrada != null) {
             entrada.close();
         } 
-
     }
 
     @Override
     public String toString() {
-        String cadena = "Ubicacion.txt\n";
-        for (int i = 0; i < getLista().size(); i++) {
-            cadena = String.format("%sNombre Barrio: ;%sNumero de casa: "
-                    + ";%sReferencia\n", cadena, i + 1,
-                    getLista().get(i).getNombreBarrio(),
-                    getLista().get(i).getNumeroCasa(),
-                    getLista().get(i).getReferencia());
+        String cadena = "Lista Ubicaciones\n";
+        for (int i = 0; i < getListaUbi().size(); i++) {
+            Ubicacion u = getListaUbi().get(i);
+            cadena = String.format("%sUbicacion %d:\n"
+                    + "Nombre Barrio: %s --- "
+                    + "Numero de casa: %s --- "
+                    + "Referncia: %s\n",
+                    cadena, i + 1,
+                    u.getNombreBarrio(),
+                    u.getNumeroCasa(),
+                    u.getReferencia());
         }
         return cadena;
     }
-    
+        
 }
